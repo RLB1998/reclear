@@ -145,7 +145,7 @@ Prop().start_with.ignore_case.dot_all + \
 
 The string class in the regular has an automatic transfer function. It also has the function of converting ordinary python types to Elem, Group, and CharSet.
 
-正则里的字符串类，具有自动转移功能。也具有将普通python类型转为Elem、Group、CharSet的功能。
+正则里的字符串类，具有自动转义功能。也具有将普通python类型转为Elem、Group、CharSet的功能。
 
 ~~~python
 from reclear import Elem
@@ -162,7 +162,7 @@ Elem("abc")	+ ("aa", "bb")    # abc(aa|bb)
 
 The character set class in the regular can be transformed by list. Automatic transfer is also available, so you don't need to think extra about manual escaping when writing code. Reverse can be controlled by the attribute `negated`.
 
-正则里的字符集类，可以通过list转化而来。也提供自动转移功能，编写代码时不需要额外考虑手动转义。可以通过属性`negated`来控制取反。
+正则里的字符集类，可以通过list转化而来。也提供自动转义功能，编写代码时不需要额外考虑手动转义。可以通过属性`negated`来控制取反。
 
 ~~~python
 from reclear import R

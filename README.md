@@ -62,7 +62,7 @@ The number of times the element is repeatedly matched. In DSL, it is called in t
 | repeat(times)                      | {n}    |
 | repeat_range(min_times, max_times) | {m,n}  |
 
-### Configuration 配置
+### Attribute 属性
 
 Used to configure the properties of the element. In DSL, it is called as an attribute without parentheses at the end.
 
@@ -143,9 +143,9 @@ Prop().start_with.ignore_case.dot_all + \
 
 ### Elem
 
-The string in the regex has an automatic transfer function. It also has the function of converting ordinary python types to Elem, Group, and CharSet.
+The string class in the regular has an automatic transfer function. It also has the function of converting ordinary python types to Elem, Group, and CharSet.
 
-正则里的字符串，具有自动转移功能。也具有将普通python类型转为Elem、Group、CharSet的功能。
+正则里的字符串类，具有自动转移功能。也具有将普通python类型转为Elem、Group、CharSet的功能。
 
 ~~~python
 from reclear import Elem
@@ -160,8 +160,56 @@ Elem("abc")	+ ("aa", "bb")    # abc(aa|bb)
 
 ### CharSet
 
+The character set class in the regular can be transformed by list. Automatic transfer is also available, so you don't need to think extra about manual escaping when writing code. Reverse can be controlled by the attribute `negated`.
+
+正则里的字符集类，可以通过list转化而来。也提供自动转移功能，编写代码时不需要额外考虑手动转义。可以通过属性`negated`来控制取反。
+
+~~~python
+from reclear import R
+from reclear import CharSet
+
+CharSet(r.cr_0_9_a_z_A_Z, '-', ']', '^')    # [0-9a-zA-Z\-\]\^]
+R() + [1, 3, 7]    # [137]
+
+CharSet(r.cr_a_z).negated	# [^a-z]
+~~~
+
 ### Group
+
+The grouping types in the regular can be transformed by tuple. Controlling whether a Group is a capture group is controlled by the attribute `non_catch`.
+
+正则里的分组类型，可以通过tuple转化而来。通过属性`non_catch`控制Group是否为捕获组。
+
+~~~python
+from reclear import R
+from reclear import Group
+
+Group("http", "https")    # (http|https)
+R() + ("http", "https")    # (http|https)
+
+Group("http", "https").non_catch    # (?:http|https)
+Group("http", "https").ignore_case	# (?i:http|https)
+~~~
 
 ### Anchor
 
+The main function of anchor classes is to mark a position in the regex, and then use the zero-width assertion function at that position.
+
+锚点类主要功能是在正则里标记一个位置，然后在这个位置上使用零宽断言功能。
+
+~~~python
+# (?i)^(?=a)\w+(?<!ing)$
+(
+        Anchor.look_right().must_be("a")
+        + r.word.one_or_more()
+        + Anchor.look_left().cant_be("ing")
+)
+.to_regex().test("apple", "banana", "amazing", "alike")
+# {'apple': True, 'banana': False, 'amazing': False, 'alike': True}
+~~~
+
 ### Regexp
+
+Regular Expression object, which provides the regular expression written by the test method.
+
+正则表达式对象，提供test方法测试编写的正则表达式。

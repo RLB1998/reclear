@@ -100,8 +100,8 @@ r + [r.cr_m_n(3, 9)]    # [3-9]    support unicode
 r + [r.cr_m_n('f', 'j')]    # [f-j]
 
 r.digit.repeat(10)    # \d{10}
-r.non_space.one_or_more    # \S+
-r.any_char.zero_or_more    # .*
+r.non_space.one_or_more()    # \S+
+r.any_char.zero_or_more()    # .*
 ~~~
 
 ### Prop

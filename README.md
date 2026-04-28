@@ -77,7 +77,7 @@ Used to configure the properties of the element. In DSL, it is called as an attr
 | close_dot_all     | (?-s:) | Partial disability of dot_all function.    局部关闭dot_all功能。 |
 | close_multiline   | (?-m:) | Partial disability of close_multiline function.    局部关闭close_multiline功能。 |
 
-## Main Object 主要对象
+## Main Class 主要类
 
 ### R
 

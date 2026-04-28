@@ -44,7 +44,7 @@ The basic components of regular expressions, including regular characters, strin
 
 | DSL                                                          | Regexp         | Description 说明                                             |
 | ------------------------------------------------------------ | -------------- | ------------------------------------------------------------ |
-| Elem(".abc")、R() + ".abc"                                   | \\.abc         | Regular string element objects, with automatic escape function for meta char meta char. Using the addition of R objects and ordinary strings gives a regular string element object.    正则字符串元素对象，对于元字符meta char有自动转义功能。使用R对象和普通字符串相加可以得到正则字符串元素对象。 |
+| Elem(".abc")、R() + ".abc"                                   | \\.abc         | Regular string element objects, with automatic escape function for meta char. Using the addition of R objects and ordinary strings gives a regular string element object.    正则字符串元素对象，对于元字符meta char有自动转义功能。使用R对象和普通字符串相加可以得到正则字符串元素对象。 |
 | CharSet(r.cr_0_9_a_z_A_Z, '-')、R() + [r.cr_0_9_a_z_A_Z, '-'] | [0-9a-zA-Z\\-] | Character set object, which provides predetermined character range templates and automatic escape functions. Using R objects and list summing gives you character set objects.    字符集对象，提供预定的字符范围模板、自动转义功能。使用R对象和列表相加可以得到字符集对象。 |
 | Group("http", "https")、R() + ("http", "https")              | (http\|https)  | Group objects. Using the sum of R objects and tuple gives the grouping object.    分组对象。使用R对象和元祖相加可以得到分组对象。 |
 

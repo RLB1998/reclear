@@ -242,7 +242,7 @@ class Group(IElem):
         new = copy.deepcopy(self)
         new.__is_close_dot_all = True
         new.__update_non_catch_prop()
-        return self
+        return new
 
     @property
     def close_multiline(self):
